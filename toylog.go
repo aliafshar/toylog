@@ -3,6 +3,7 @@ package toylog
 
 import (
 	golog "log"
+  "os"
 )
 
 type logLevel int
@@ -85,7 +86,6 @@ func (l *logger) Fatalf(format string, v ...interface{}) {
 	golog.Printf(format, v...)
 }
 
-var defaultLog = logger{level: LevelInfo}
 
 func Set(level logLevel) {
 	defaultLog.level = level
@@ -126,6 +126,12 @@ func Fatalf(format string, v ...interface{}) {
 func Fatalln(v ...interface{}) {
 	defaultLog.Fatalln(v...)
 }
+
+func Stdout() {
+  golog.SetOutput(os.Stdout)
+}
+
+var defaultLog = logger{level: LevelInfo}
 
 func init() {
 	golog.SetFlags(0)
