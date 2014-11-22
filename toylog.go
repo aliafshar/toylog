@@ -83,7 +83,7 @@ func (l *logger) Fatalln(v ...interface{}) {
 
 func (l *logger) Fatalf(format string, v ...interface{}) {
 	format = levelPrefix(LevelFatal, true) + format
-	golog.Printf(format, v...)
+	golog.Fatalf(format, v...)
 }
 
 
